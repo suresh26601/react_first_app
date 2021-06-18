@@ -2,18 +2,29 @@ import Header from "./myComponant/Header";
 import Footer from "./myComponant/Footer";
 import Todos from "./myComponant/Todos";
 import Addtodo from "./myComponant/Addtodo";
-import {Login} from "./myComponant/Login";
-import {Signup} from "./myComponant/Signup";
-import { useState } from 'react';
-import {
-  BrowserRouter as Router,
+import { Login } from "./myComponant/Login";
+import { Signup } from "./myComponant/Signup";
+import { useState,useEffect } from 'react';
+import 
+{BrowserRouter as Router,
   Switch,
-  Route,
-} from "react-router-dom";
+  Route,} from "react-router-dom";
+// ***main function*********
 function App() {
+
+// *****for taking todos from lacalstorage when page reloads********
+let storedTodo;
+if (localStorage.getItem('todos')===null){
+  storedTodo=[];
+}
+else{
+  storedTodo=JSON.parse(localStorage.getItem('todos'))
+}
+
+  // ******for adding todo******
   const addTodo = (tsk, des) => {
     let sn;
-    if (todos.length == 0) {
+    if (todos.length === 0) {
       sn = 1
     }
     else {
@@ -26,27 +37,37 @@ function App() {
     };
     settodos([...todos, myTodo]);
   }
-  const todoDelete = (todo) => {
-    console.log("todo deleting yee vala", todo);
-    settodos(todos.filter((e) => {
-      return e != todo;
+
+  
+// **********for deleting todo***
+  
+const todoDelete = (todo) => {
+ 
+   settodos(todos.filter((e) => {
+   
+   return e !== todo;
     }));
   }
-  const [todos, settodos] = useState([]);
+
+  
+// ******stores todos******
+  const [todos, settodos] = useState(storedTodo);
+  useEffect(() => {localStorage.setItem("todos",JSON.stringify(todos))}, [todos])
+  // ******rendering part*****
   return (
     <>
       <Router>
-        <Header />
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/home">
+            <Header/>
             <Addtodo addTodo={addTodo} />
-            <Todos todos={todos} todoDelete={todoDelete}/>
+            <Todos todos={todos} todoDelete={todoDelete} />
           </Route>
           <Route exact path="/login">
-            <Login/>
+            <Login />
           </Route>
-          <Route exact path="/signup">
-            <Signup/>
+          <Route exact path="/">
+            <Signup />
           </Route>
         </Switch>
         <Footer />

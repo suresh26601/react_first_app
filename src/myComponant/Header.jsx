@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 export default function Header() {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -17,7 +17,7 @@ export default function Header() {
                             <Link className="nav-link active" aria-current="page" to="/login">Log In</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/signup">Sign UP</Link>
+                            <Link className="nav-link active" aria-current="page" to="/">Sign Up</Link>
                         </li>
                     </ul>
                     <form className="d-flex">

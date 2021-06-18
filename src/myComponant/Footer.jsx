@@ -1,13 +1,12 @@
 import React from 'react'
 
 export default function Footer() {
-    let style={
+    let style = {
         position: "fixed",
-    width: "100%",
-    borderTop:" 3px solid darkslategrey",
-    bottom: "0px",
-    borderRadius:" 73px 73px 0px 0px",
-        
+        width: "100%",
+        borderTop: " 3px solid darkslategrey",
+        bottom: "0px",
+        borderRadius: " 23px 23px 0px 0px",
     }
     return (
         <div className="bg-dark text-center text-white p-2" style={style}>
